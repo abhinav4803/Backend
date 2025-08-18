@@ -29,7 +29,7 @@ export const errorMiddleware = (err, req, res, next) => {
   const errorMessage = err.error
     ? Object.values(err.error)
         .map((value) => value.message)
-        .join(", ")
+        .join(",   ")
     : err.message;
 };
 export default ErrorHandler;

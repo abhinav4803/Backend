@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import fileUpload from "express-fileupload";
 import { connection } from "./database/connection.js";
 import { errorMiddleware } from "./middlewares/error.js";
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
-
+app.use("/api/v1/user", userRouter);
 connection();
 app.use(errorMiddleware);
 
