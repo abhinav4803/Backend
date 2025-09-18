@@ -50,11 +50,18 @@ export const register = async (req, res, next) => {
       password, // 🔴 Ideally hash password using bcrypt before saving
       phone,
       address,
-      // profilePicture: {
-      //   public_id: profilePicture.name,
-      //   url: profilePicture.tempFilePath, // You might want to upload this to cloud storage (e.g. Cloudinary)
-      // },
+      profilePicture: {
+        public_id: profilePicture.name,
+        url: profilePicture.tempFilePath, // You might want to upload this to cloud storage (e.g. Cloudinary)
+      },
       role: role || "buyer",
+      paymentMethods: {
+        methodType: "paymentMethod.methodtype",
+        provider: "paymentMethod.provider",
+        accountNumber: "paymentMethod.accountNumber",
+        expiryDate: "paymentMethod.expiryDate",
+        upiId: "paymentMethod.upiId",
+      },
     });
 
     await user.save();
